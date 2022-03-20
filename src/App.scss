@@ -1,0 +1,36 @@
+@use 'styles/Preflight.css';
+@use 'styles/TodoHeader.scss';
+
+@import-normalize;
+
+.container {
+  max-width: 36rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  min-height: 100vh;
+  // small viewport height:
+  /* https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/ */
+  min-height: 100svh;
+  position: relative;
+}
+
+.skip-link {
+  position: fixed;
+  top: -200px;
+  left: 4rem;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  padding: 0.5rem 1rem;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
