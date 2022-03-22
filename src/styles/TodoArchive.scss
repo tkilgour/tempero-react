@@ -1,0 +1,112 @@
+.drawer {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0%);
+  margin: 0 auto;
+  width: calc(100% - 2rem);
+  max-width: 36rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--highlight-color);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: var(--bg-color);
+}
+
+.content-wpr {
+  height: 30vh;
+  overflow: auto;
+  position: relative;
+}
+
+.drawer-header {
+  padding-block: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--primary-color);
+
+  & > * {
+    transform: scale(1);
+    transition: all 200ms ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+
+    & > * {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.content {
+  padding-inline: 1rem;
+  padding-top: 1rem;
+}
+
+.delete-archive-btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.5rem;
+  background-color: var(--primary-color-light);
+  color: var(--bg-color);
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 200ms ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+  }
+}
+
+.pop-enter-active {
+  animation: pop-out 500ms ease-out;
+}
+
+.pop-leave-active {
+  animation: pop-in 400ms ease-out;
+}
+
+@keyframes pop-out {
+  0% {
+    height: 0;
+  }
+
+  60% {
+    height: 30vh;
+  }
+
+  75% {
+    height: 29vh;
+  }
+
+  100% {
+    height: 30vh;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    height: 30;
+  }
+
+  60% {
+    height: 0vh;
+  }
+
+  70% {
+    height: 1.5vh;
+  }
+
+  100% {
+    height: 0vh;
+  }
+}

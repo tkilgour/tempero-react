@@ -1,0 +1,23 @@
+.create-btn {
+  position: fixed;
+  width: 4rem;
+  height: 4rem;
+  bottom: 4rem;
+  right: 2rem;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  line-height: 1;
+  border-radius: 50%;
+  background-color: var(--primary-color-light);
+  color: var(--bg-color);
+  transform: scale(1);
+  transition: all var(--transition-timing) ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    transform: scale(1.1);
+    background-color: var(--primary-color);
+  }
+}

@@ -1,0 +1,61 @@
+.todo-list {
+  flex: 1;
+  margin-top: 2rem;
+  padding-bottom: 4rem;
+  grid-column-start: span 3;
+}
+
+.no-content {
+  text-align: center;
+  font-style: italic;
+  color: var(--highlight-color);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.no-mobile {
+  display: none;
+}
+
+.h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-align: center;
+  color: var(--low-priority-color);
+}
+
+.todo-list-enter-active {
+  animation: pop-out 170ms ease-out reverse;
+}
+
+.todo-list-leave-active {
+  animation: pop-out 300ms ease-out;
+}
+
+@keyframes pop-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  33% {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .todo-list {
+    margin-top: 1rem;
+  }
+
+  .no-mobile {
+    display: inline;
+  }
+}
