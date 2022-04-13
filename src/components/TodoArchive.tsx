@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Todo } from '../interface';
-import TodoItem from './TodoItem';
+import React, { useEffect, useRef, useState } from 'react'
+import { Todo } from '../interface'
+import TodoItem from './TodoItem'
 
 const initialTodos = [
   {
@@ -17,38 +17,53 @@ const initialTodos = [
     dateCreated: new Date(),
     dateArchived: new Date(),
   },
-];
+]
 
 const deleteAllArchivedTodos = () => {
-  console.log('delete all archived todos');
-};
+  console.log('delete all archived todos')
+}
 
 const TodoArchive = () => {
-  const [todoArchve, setTodoArchve] = useState<Todo[]>(initialTodos);
-  const [drawer, setDrawer] = useState(false);
+  const [todoArchve, setTodoArchve] = useState<Todo[]>(initialTodos)
+  const [isExpanded, setExpanded] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setExpanded(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside, true)
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true)
+    }
+  })
 
   return (
     <div>
       {todoArchve.length && (
         <div
           className="drawer"
-          // TODO: v-on-click-outside="closeDrawer"
-          onKeyDown={() => setDrawer(false)} // TODO: handle esc key only
-        >
+          ref={ref}
+          onKeyDown={(e) => {
+            if (e.code === 'Escape') setExpanded(false)
+          }}>
           <button
             className="drawer-header"
             aria-label={`Archive - ${todoArchve.length} item${
               todoArchve.length > 1 ? 's' : ''
             }`}
-            onClick={() => setDrawer(!drawer)}>
+            onClick={() => setExpanded(!isExpanded)}>
             <div>Archive ({todoArchve.length})</div>
           </button>
 
-          {/* TODO: conditionally show/hide */}
-          <div className="content-wpr" aria-expanded={drawer}>
+          <div
+            className={`content-wpr ${isExpanded ? 'expanded' : ''}`}
+            aria-expanded={isExpanded}>
             <ul className="content">
               {todoArchve.map((todo) => {
-                return <TodoItem key={todo.id} todo={todo} archived />;
+                return <TodoItem key={todo.id} todo={todo} archived />
               })}
             </ul>
             <button
@@ -73,7 +88,7 @@ const TodoArchive = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default TodoArchive;
+export default TodoArchive

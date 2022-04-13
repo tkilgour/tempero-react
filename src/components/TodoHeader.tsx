@@ -32,7 +32,7 @@ const TodoHeader = () => {
       </button>
 
       <div className="settings-wpr">
-        <div v-show="showSettings">
+        <div className={showSettings ? '' : 'hidden'}>
           <button
             className="header-btn btn"
             title="Import from Clipboard"

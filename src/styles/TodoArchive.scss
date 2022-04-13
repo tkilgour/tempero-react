@@ -18,6 +18,11 @@
   height: 30vh;
   overflow: auto;
   position: relative;
+  animation: pop-in 400ms ease-out forwards;
+
+  &.expanded {
+    animation: pop-out 500ms ease-out forwards;
+  }
 }
 
 .drawer-header {
